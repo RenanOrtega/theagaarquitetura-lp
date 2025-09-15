@@ -55,7 +55,7 @@ function Testimonials() {
         {testimonials.map((testimonial) => (
           <div
             key={testimonial.id}
-            className="group bg-[#FADBBB] p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-full"
+            className="group bg-[#FADBBB] p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-full rounded-2xl"
           >
             {/* Estrelas de avaliação */}
             <div className="flex items-center pb-5">

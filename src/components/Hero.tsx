@@ -19,7 +19,7 @@ export default function Hero() {
         <img
           src={teagaLogo}
           alt="Teaga Arquitetura"
-          className="h-16 md:h-20 w-auto"
+          className="h-16 md:h-20 w-auto rounded-xl"
         />
       </div>
 
