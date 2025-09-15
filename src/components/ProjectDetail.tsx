@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, MapPin, Calendar, Square } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowLeft, MapPin, Square } from "lucide-react";
 import portfolio1 from "../assets/images/portfolio-1.jpg";
 import portfolio2 from "../assets/images/portfolio-2.jpg";
 import portfolio3 from "../assets/images/portfolio-3.jpg";
@@ -12,12 +13,12 @@ import logoTh from "../assets/images/logo-th.png";
 interface ProjectData {
   id: number;
   image: string;
+  images: string[];
   title: string;
   description: string;
   details: string;
   area: string;
   location: string;
-  year: string;
   client: string;
 }
 
@@ -25,6 +26,7 @@ const projectsData: Record<string, ProjectData> = {
   "1": {
     id: 1,
     image: portfolio1,
+    images: [portfolio1, portfolio2, portfolio3],
     title: "Eike e Bianca",
     description:
       "Projeto residencial moderno com foco em conforto e funcionalidade",
@@ -32,67 +34,66 @@ const projectsData: Record<string, ProjectData> = {
       "Este projeto foi desenvolvido para um jovem casal que buscava um ambiente moderno e aconchegante. O design priorizou a integração dos espaços sociais, criando um ambiente fluido entre sala de estar, jantar e cozinha. A paleta de cores neutras com toques de madeira natural traz warmth ao ambiente.",
     area: "120m²",
     location: "São Paulo, SP",
-    year: "2024",
     client: "Eike e Bianca",
   },
   "2": {
     id: 2,
     image: portfolio2,
+    images: [portfolio2, portfolio4, portfolio5],
     title: "Renan e Thais",
     description: "Design contemporâneo com elementos industriais",
     details:
       "Projeto desenvolvido para um casal jovem que desejava um ambiente sofisticado com toques industriais. O uso de materiais como concreto aparente, ferro e madeira criou um ambiente único e personalizado. A iluminação foi cuidadosamente planejada para destacar cada elemento do projeto.",
     area: "95m²",
     location: "Rio de Janeiro, RJ",
-    year: "2024",
     client: "Renan e Thais",
   },
   "3": {
     id: 3,
     image: portfolio3,
+    images: [portfolio3, portfolio1, portfolio6],
     title: "Escritório Contemporâneo",
     description: "Ambiente corporativo moderno e produtivo",
     details:
       "Escritório projetado para maximizar a produtividade e o bem-estar dos funcionários. O design aberto promove a colaboração, enquanto as áreas privativas garantem a concentração necessária. A escolha de materiais sustentáveis reflete os valores da empresa.",
     area: "200m²",
     location: "São Paulo, SP",
-    year: "2023",
     client: "Empresa Tech",
   },
   "4": {
     id: 4,
     image: portfolio4,
+    images: [portfolio4, portfolio2, portfolio1],
     title: "Quarto de Luxo Moderno",
     description: "Suite master com design luxuoso e aconchegante",
     details:
       "Este projeto de suite master combina luxo e conforto. O design minimalista com materiais nobres cria um ambiente relaxante e sofisticado. A iluminação indireta e a paleta de cores suaves contribuem para uma atmosfera tranquila e acolhedora.",
     area: "35m²",
     location: "Brasília, DF",
-    year: "2023",
     client: "Família Silva",
   },
   "5": {
     id: 5,
     image: portfolio5,
+    images: [portfolio5, portfolio3, portfolio4],
     title: "Cozinha Industrial Moderna",
     description: "Cozinha gourmet com elementos industriais",
     details:
       "Cozinha gourmet que combina funcionalidade e estilo industrial. O projeto integra equipamentos de alta performance com design moderno. Os materiais como aço inox, madeira e concreto criam um ambiente único e funcional para os amantes da culinária.",
     area: "45m²",
     location: "São Paulo, SP",
-    year: "2023",
     client: "Chef Rodrigo",
   },
   "6": {
     id: 6,
     image: portfolio6,
+    images: [portfolio6, portfolio5, portfolio2],
     title: "Banheiro Contemporâneo",
     description: "Design moderno com materiais nobres",
     details:
       "Banheiro contemporâneo que prioriza o bem-estar e relaxamento. O uso de mármore, madeira e metais cria uma atmosfera spa-like. A iluminação estratégica e o layout otimizado maximizam o conforto e a funcionalidade do espaço.",
     area: "20m²",
     location: "Rio de Janeiro, RJ",
-    year: "2024",
     client: "Apartamento Leblon",
   },
 };
@@ -100,6 +101,13 @@ const projectsData: Record<string, ProjectData> = {
 function ProjectDetail() {
   const { projectId } = useParams<{ projectId: string }>();
   const project = projectId ? projectsData[projectId] : null;
+  const [selectedImage, setSelectedImage] = useState<string>("");
+
+  useEffect(() => {
+    if (project) {
+      setSelectedImage(project.image);
+    }
+  }, [project]);
 
   if (!project) {
     return (
@@ -136,7 +144,7 @@ function ProjectDetail() {
         <div className="flex justify-between items-center">
           <Link
             to="/"
-            className="inline-flex items-center gap-3 text-[#894900] hover:text-[#B26F3D] transition-all duration-300 bg-white/90 backdrop-blur-sm rounded-full px-4 py-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="inline-flex items-center gap-3 text-[#894900] hover:text-[#B26F3D] transition-all duration-300 bg-white/90 backdrop-blur-sm -full px-4 py-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
             <ArrowLeft size={20} />
             <span className="hidden sm:inline font-medium">
@@ -150,9 +158,10 @@ function ProjectDetail() {
         <div className="max-w-7xl px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
+              {/* Imagem principal */}
               <div className="relative group overflow-hidden rounded-2xl shadow-2xl">
                 <img
-                  src={project.image}
+                  src={selectedImage}
                   alt={project.title}
                   className="w-full h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -160,30 +169,33 @@ function ProjectDetail() {
               </div>
 
               {/* Galeria secundária */}
-              <div className="grid grid-cols-2 gap-4 pt-4">
-                <div className="relative group overflow-hidden rounded-xl shadow-lg">
-                  <img
-                    src={project.image}
-                    alt={`${project.title} - Vista 2`}
-                    className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <div className="relative group overflow-hidden rounded-xl shadow-lg">
-                  <img
-                    src={project.image}
-                    alt={`${project.title} - Vista 3`}
-                    className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
+              <div className="grid grid-cols-3 gap-4 pt-4">
+                {project.images.map((image, index) => (
+                  <div
+                    key={index}
+                    className={`relative group overflow-hidden rounded-xl shadow-lg cursor-pointer transition-all duration-300 ${
+                      selectedImage === image
+                        ? 'ring-4 ring-[#B26F3D] ring-opacity-60 transform scale-105'
+                        : 'hover:ring-2 hover:ring-[#B26F3D] hover:ring-opacity-40'
+                    }`}
+                    onClick={() => setSelectedImage(image)}
+                  >
+                    <img
+                      src={image}
+                      alt={`${project.title} - Vista ${index + 1}`}
+                      className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+                  </div>
+                ))}
               </div>
-              {/* Imagem principal */}
             </div>
 
             {/* Lado direito - Conteúdo */}
             <div className="space-y-8">
               {/* Header do projeto */}
               <div className="space-y-4">
-                <div className="inline-block px-3 py-1 bg-[#B26F3D]/10 rounded-full">
+                <div className="inline-block px-3 py-1 bg-[#B26F3D]/10 -full">
                   <span className="text-sm font-medium text-[#B26F3D]">
                     Projeto Residencial
                   </span>
@@ -200,8 +212,8 @@ function ProjectDetail() {
 
               {/* Informações do projeto */}
               <div className="grid grid-cols-2 gap-6">
-                <div className="flex items-center gap-3 p-4 bg-white/50 backdrop-blur-sm rounded-xl">
-                  <div className="p-2 bg-[#B26F3D]/10 rounded-lg">
+                <div className="flex items-center gap-3 p-4 bg-white/50 backdrop-blur-sm -xl">
+                  <div className="p-2 bg-[#B26F3D]/10 -lg">
                     <Square size={18} className="text-[#B26F3D]" />
                   </div>
                   <div>
@@ -211,21 +223,8 @@ function ProjectDetail() {
                     </p>
                   </div>
                 </div>
-
-                <div className="flex items-center gap-3 p-4 bg-white/50 backdrop-blur-sm rounded-xl">
-                  <div className="p-2 bg-[#B26F3D]/10 rounded-lg">
-                    <Calendar size={18} className="text-[#B26F3D]" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-[#894900]/70">Ano</p>
-                    <p className="font-semibold text-[#894900]">
-                      {project.year}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 p-4 bg-white/50 backdrop-blur-sm rounded-xl w-full">
-                  <div className="p-2 bg-[#B26F3D]/10 rounded-lg">
+                <div className="flex items-center gap-3 p-4 bg-white/50 backdrop-blur-sm -xl w-full">
+                  <div className="p-2 bg-[#B26F3D]/10 -lg">
                     <MapPin size={18} className="text-[#B26F3D]" />
                   </div>
                   <div>
@@ -266,12 +265,12 @@ function ProjectDetail() {
                       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
                       window.open(whatsappUrl, "_blank");
                     }}
-                    className="group relative inline-flex items-center gap-3 bg-[#B26F3D] hover:bg-[#894900] text-white px-8 py-4 rounded-xl text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer"
+                    className="group relative inline-flex items-center gap-3 bg-[#B26F3D] hover:bg-[#894900] text-white px-8 py-4 -xl text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer"
                   >
                     <span>Criar projeto similar</span>
-                    <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 bg-white -full animate-pulse"></div>
 
-                    <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-white/20 -xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </div>
               </div>
@@ -288,8 +287,8 @@ function ProjectDetail() {
       />
 
       {/* Elementos decorativos */}
-      <div className="absolute top-1/4 right-8 w-32 h-32 bg-[#B26F3D]/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 left-8 w-40 h-40 bg-[#894900]/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/4 right-8 w-32 h-32 bg-[#B26F3D]/5 -full blur-3xl"></div>
+      <div className="absolute bottom-1/4 left-8 w-40 h-40 bg-[#894900]/5 -full blur-3xl"></div>
     </div>
   );
 }

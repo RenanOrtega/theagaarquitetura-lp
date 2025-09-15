@@ -1,4 +1,5 @@
 import nath from "../assets/images/nath.png";
+// import nathOrganic from "../assets/images/nath-organic.png";
 import nathSquare from "../assets/images/nath-square.png";
 import InstagramIcon from "../assets/svg/instagram";
 

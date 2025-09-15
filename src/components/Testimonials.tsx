@@ -1,15 +1,18 @@
+import { useNavigate } from "react-router-dom";
 // import client1 from "../assets/images/client-1.jpg";
 // import client2 from "../assets/images/client-2.jpg";
 // import client3 from "../assets/images/client-3.jpg";
 // import client4 from "../assets/images/client-4.jpg";
 
 function Testimonials() {
+  const navigate = useNavigate();
   const testimonials = [
     {
       id: 1,
       name: "Mariana Santos",
       role: "Empresária",
       image: "client1",
+      projectId: 1,
       text: "A Nathalia transformou completamente nossa casa. Ela não apenas criou um espaço lindo, mas entendeu exatamente o que nossa família precisava. Cada ambiente reflete nossa personalidade e trouxe uma paz que não sabíamos que era possível ter em casa.",
     },
     {
@@ -17,6 +20,7 @@ function Testimonials() {
       name: "Lucas & Ana Paula",
       role: "Casal",
       image: "client2",
+      projectId: 2,
       text: "Trabalhar com a Nath foi uma experiência única. Ela conseguiu captar nossos sonhos e transformar em realidade. O conceito de arquitetura com alma fez toda a diferença - nossa casa agora é um verdadeiro refúgio de amor e harmonia.",
     },
     {
@@ -25,6 +29,7 @@ function Testimonials() {
       role: "Advogado",
       text: "Profissionalismo exemplar e resultado excepcional. A Nathalia criou um escritório que transmite seriedade e acolhimento ao mesmo tempo. Meus clientes sempre elogiam o ambiente, e eu me sinto mais produtivo e motivado trabalhando aqui.",
       image: "client3",
+      projectId: 3,
     },
     {
       id: 4,
@@ -32,8 +37,13 @@ function Testimonials() {
       role: "Médica",
       text: "A sensibilidade da Nathalia em compreender meu estilo de vida e necessidades foi impressionante. Ela criou um lar que é funcional para minha rotina corrida, mas também um santuário para relaxar. É incrível como cada detalhe foi pensado com carinho.",
       image: "client4",
+      projectId: 4,
     },
   ];
+
+  const handleProjectAccess = (projectId: number) => {
+    navigate(`/projeto/${projectId}`);
+  };
 
   return (
     <section className="flex flex-col justify-center items-center pt-20 bg-[#FFE8D8]">
@@ -83,22 +93,43 @@ function Testimonials() {
               </span>
             </div>
 
-            {/* Client Info */}
-            <div className="flex items-center gap-4 pt-4 border-t border-[#B26F3D]">
-              {/* <div className="w-16 h-16 rounded-full overflow-hidden shadow-md">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-full h-full object-cover"
-                />
-              </div> */}
-              <div>
-                <h3 className="font-bold text-[#B26F3D] text-lg">
-                  {testimonial.name}
-                </h3>
-                <p className="text-[#B26F3D] opacity-80 italic">
-                  {testimonial.role}
-                </p>
+            {/* Client Info and Button */}
+            <div className="pt-4 border-t border-[#B26F3D]">
+              <div className="flex justify-between">
+                <div className="flex items-center gap-5">
+                  <div className="w-16 h-16 rounded-full overflow-hidden shadow-md bg-[#FADBBB] flex items-center justify-center">
+                    {testimonial.image && testimonial.image !== "client1" && testimonial.image !== "client2" && testimonial.image !== "client3" && testimonial.image !== "client4" ? (
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <svg
+                        className="w-10 h-10 text-[#B26F3D]"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                      </svg>
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-[#B26F3D] text-lg">
+                      {testimonial.name}
+                    </h3>
+                    <p className="text-[#B26F3D] opacity-80 italic">
+                      {testimonial.role}
+                    </p>
+                  </div>
+                </div>
+                {/* Access Project Button */}
+                <button
+                  onClick={() => handleProjectAccess(testimonial.projectId)}
+                  className="bg-[#B26F3D] hover:bg-[#894900] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform cursor-pointer"
+                >
+                  Acessar projeto
+                </button>
               </div>
             </div>
           </div>
