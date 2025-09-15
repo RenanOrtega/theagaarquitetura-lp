@@ -57,11 +57,11 @@ function Portfolio() {
             className="group cursor-pointer transform transition-all duration-300 relative"
             onClick={() => handleProjectClick(item.id)}
           >
-            <div className="aspect-[6/3] overflow-hidden shadow-xl relative">
+            <div className="aspect-[6/3] overflow-hidden shadow-xl relative rounded-2xl">
               <img
                 src={item.image}
                 alt={item.alt}
-                className="w-full h-full object-cover filter transition-all duration-300"
+                className="w-full h-full object-cover filter transition-all duration-300 rounded-2xl"
                 loading="lazy"
               />
               {/* Overlay */}
@@ -82,7 +82,7 @@ function Portfolio() {
       <div className="flex justify-center pt-10 pb-25">
         <button
           onClick={handleWhatsAppContact}
-          className="bg-[#B26F3D] hover:bg-[#2D4530] px-10 py-5 cursor-pointer transition-colors duration-300"
+          className="bg-[#B26F3D] hover:bg-[#2D4530] px-10 py-5 cursor-pointer transition-colors duration-300 rounded-2xl"
         >
           <span className="font-bold text-white">Entre em contato</span>
         </button>

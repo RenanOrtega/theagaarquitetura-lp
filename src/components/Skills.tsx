@@ -60,7 +60,7 @@ export default function Skills() {
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="bg-white border border-[#894900]/20 shadow-md p-8 flex flex-col items-start gap-4 hover:shadow-lg transition"
+              className="bg-white border border-[#894900]/20 shadow-md p-8 flex flex-col items-start gap-4 hover:shadow-lg transition rounded-2xl"
             >
               {/* Icon */}
               <div className="p-3 rounded-full border border-[#894900]/30 text-[#894900]">

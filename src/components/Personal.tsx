@@ -10,7 +10,7 @@ export default function Personal() {
         <img
           src={nathSquare}
           alt="Nathalia Leme"
-          className="w-full h-auto object-cover"
+          className="w-full h-auto object-cover rounded-2xl"
         />
       </div>
 
@@ -38,7 +38,7 @@ export default function Personal() {
           <a
             href="https://www.instagram.com/arquitetanath/#"
             target="_blank"
-            className="w-70 h-15 bg-[#FADBBB] border border-[rgba(206,131,74,0.3)] flex items-center justify-center gap-10 shadow-sm transition-all duration-300 hover:shadow-md"
+            className="w-70 h-15 bg-[#FADBBB] border border-[rgba(206,131,74,0.3)] flex items-center justify-center gap-10 shadow-sm transition-all duration-300 hover:shadow-md rounded-2xl"
           >
             <div className="relative">
               <InstagramIcon className="w-12 h-12" fill="#B26F3D" />

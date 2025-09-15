@@ -48,7 +48,7 @@ export default function Footer() {
               href="https://instagram.com/nath.arquiteta"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
+              className="w-10 h-10 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
             >
               <svg
                 className="w-5 h-5 fill-[#894900] opacity-40"
@@ -61,7 +61,7 @@ export default function Footer() {
               href="https://linkedin.com/in/nath-arquiteta"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
+              className="w-10 h-10 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
             >
               <svg
                 className="w-5 h-5 fill-[#894900] opacity-40"

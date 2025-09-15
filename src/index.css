@@ -50,3 +50,18 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+/* Rounded Design Theme */
+button {
+  border-radius: 1rem;
+}
+
+img:not(.rounded-full) {
+  border-radius: 1rem;
+}
+
+.card,
+.testimonial-card,
+.skill-card {
+  border-radius: 1rem;
+}
