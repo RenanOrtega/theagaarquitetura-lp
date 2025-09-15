@@ -1,4 +1,5 @@
-import bgHero from "../assets/images/bg-hero.png";
+// import bgHero from "../assets/images/bg-hero.png";
+import bgHero from "../assets/images/portfolio-1.jpg";
 import teagaLogo from "../assets/images/teaga-logo.png";
 
 export default function Hero() {
