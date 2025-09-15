@@ -1,11 +1,12 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Personal from "./components/Personal";
 import Portfolio from "./components/Portfolio";
-import Skills from "./components/Skills";
 import Testimonials from "./components/Testimonials";
+import ProjectDetail from "./components/ProjectDetail";
 
-function App() {
+function HomePage() {
   return (
     <div>
       <Hero />
@@ -16,11 +17,19 @@ function App() {
       <div className="pt-10">
         <Testimonials />
       </div>
-      <div className="">
-        <Footer />
-      </div>
-      {/* <Skills /> */}
+      <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/projeto/:projectId" element={<ProjectDetail />} />
+      </Routes>
+    </Router>
   );
 }
 
