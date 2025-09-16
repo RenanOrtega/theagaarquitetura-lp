@@ -11,7 +11,7 @@ export default function Hero() {
       {/* Filtro sobre o background */}
       <div
         className="absolute inset-0 z-0"
-        style={{ backgroundColor: "rgba(137, 73, 0, 0.4)" }}
+        style={{ backgroundColor: "var(--color-overlay-dark)" }}
       ></div>
 
       {/* Logo no canto superior direito */}
@@ -25,7 +25,7 @@ export default function Hero() {
 
       {/* Conteúdo centralizado */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 text-center text-white">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-wider">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider mb-6">
           CONSTRUINDO SEUS SONHOS
         </h1>
         <p className="text-lg md:text-xl lg:text-2xl max-w-4xl leading-relaxed font-light">

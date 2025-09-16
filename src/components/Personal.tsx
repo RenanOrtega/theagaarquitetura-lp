@@ -5,7 +5,7 @@ import InstagramIcon from "../assets/svg/instagram";
 
 export default function Personal() {
   return (
-    <section className="flex gap-2">
+    <section className="flex gap-8">
       {/* Lado da imagem */}
       <div className="flex-1 max-w-120">
         <img
@@ -17,7 +17,7 @@ export default function Personal() {
 
       {/* Lado do texto */}
       <div className="flex flex-col flex-1">
-        <div className="text-[#894900] text-right flex-1">
+        <div className="text-[var(--color-primary-dark)] text-right flex-1">
           <h3 className="text-3xl font-semibold">Sobre Nathalia Leme</h3>
           <p className="text-2xl leading-9">
             Sou arquiteta especializada em Psicoarquitetura e meu propósito é
@@ -27,7 +27,7 @@ export default function Personal() {
             busco compreender sentimentos, histórias e a vida que cada pessoa
             deseja viver.
           </p>
-          <p className="text-2xl leading-9 pt-5">
+          <p className="text-2xl leading-9 pt-6">
             Desenvolvi o conceito de arquitetura com alma, que une psicologia,
             estética e praticidade para criar ambientes únicos, capazes de
             organizar o caos, acolher e até exercer um papel terapêutico. Meu
@@ -39,17 +39,17 @@ export default function Personal() {
           <a
             href="https://www.instagram.com/arquitetanath/#"
             target="_blank"
-            className="w-70 h-15 bg-[#FADBBB] border border-[rgba(206,131,74,0.3)] flex items-center justify-center gap-10 shadow-sm transition-all duration-300 hover:shadow-md rounded-2xl"
+            className="w-70 h-15 bg-[var(--color-primary-light)] border border-[var(--color-border-light)] flex items-center justify-center shadow-sm transition-all duration-300 hover:shadow-md rounded-2xl gap-8"
           >
             <div className="relative">
-              <InstagramIcon className="w-12 h-12" fill="#B26F3D" />
+              <InstagramIcon className="w-12 h-12" fill="var(--color-primary-medium)" />
               <img
                 src={nath}
                 alt="Nathalia"
                 className="w-10 h-10 rounded-full object-cover absolute top-1 left-8"
               />
             </div>
-            <span className="text-[#B26F3D] font-bold underline">
+            <span className="text-[var(--color-primary-medium)] font-bold underline">
               Siga no Instagram!
             </span>
           </a>

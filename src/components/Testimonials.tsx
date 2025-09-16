@@ -46,33 +46,33 @@ function Testimonials() {
   };
 
   return (
-    <section className="flex flex-col justify-center items-center pt-20 bg-[#FFE8D8]">
+    <section className="flex flex-col justify-center items-center bg-[var(--color-primary-bg)] pt-24">
       {/* Title Section */}
-      <div className="flex flex-col justify-center items-center gap-5">
-        <div className="w-4xl h-0.5 bg-[#894900] opacity-60"></div>
-        <div className="w-2xl h-0.5 bg-[#894900] opacity-60"></div>
-        <h1 className="text-6xl font-bold text-[#894900] opacity-60 tracking-wider pt-20">
+      <div className="flex flex-col justify-center items-center gap-6">
+        <div className="w-4xl h-0.5 bg-[var(--color-primary-dark)] opacity-60"></div>
+        <div className="w-2xl h-0.5 bg-[var(--color-primary-dark)] opacity-60"></div>
+        <h1 className="text-6xl font-bold text-[var(--color-primary-dark)] opacity-60 tracking-wider pt-20">
           DEPOIMENTOS
         </h1>
-        <span className="text-lg text-[#894900] opacity-60 font-medium tracking-wide">
+        <span className="text-lg text-[var(--color-primary-dark)] opacity-60 font-medium tracking-wide">
           O que nossos clientes dizem sobre a experiência
         </span>
         <div className="w-full max-w-[30rem] h-0.5 bg-primary opacity-60"></div>
       </div>
 
       {/* Testimonials Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-10 px-20 pb-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-16 px-20 pb-20">
         {testimonials.map((testimonial) => (
           <div
             key={testimonial.id}
-            className="group bg-[#FADBBB] p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-full rounded-2xl"
+            className="group bg-[var(--color-primary-light)] p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-full rounded-2xl"
           >
             {/* Estrelas de avaliação */}
-            <div className="flex items-center pb-5">
+            <div className="flex items-center pb-6">
               {[...Array(5)].map((_, i) => (
                 <svg
                   key={i}
-                  className="w-5 h-5 text-[#B26F3D]"
+                  className="w-5 h-5 text-[var(--color-primary-medium)]"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -81,11 +81,11 @@ function Testimonials() {
               ))}
             </div>
             {/* Quote */}
-            <div className="mb-6 min-h-[120px]">
+            <div className="min-h-[120px] mb-6">
               <span className="text-4xl text-secondary opacity-40 font-serif leading-none">
                 "
               </span>
-              <p className="text-lg text-[#B26F3D] leading-relaxed mt-2">
+              <p className="text-lg text-[var(--color-primary-medium)] leading-relaxed mt-4">
                 {testimonial.text}
               </p>
               <span className="text-4xl text-secondary opacity-40 font-serif leading-none float-right -mt-2">
@@ -94,11 +94,15 @@ function Testimonials() {
             </div>
 
             {/* Client Info and Button */}
-            <div className="pt-4 border-t border-[#B26F3D]">
+            <div className="border-t border-[var(--color-primary-medium)] pt-4">
               <div className="flex justify-between">
-                <div className="flex items-center gap-5">
-                  <div className="w-16 h-16 rounded-full overflow-hidden shadow-md bg-[#FADBBB] flex items-center justify-center">
-                    {testimonial.image && testimonial.image !== "client1" && testimonial.image !== "client2" && testimonial.image !== "client3" && testimonial.image !== "client4" ? (
+                <div className="flex items-center gap-6">
+                  <div className="w-16 h-16 rounded-full overflow-hidden shadow-md bg-[var(--color-primary-light)] flex items-center justify-center">
+                    {testimonial.image &&
+                    testimonial.image !== "client1" &&
+                    testimonial.image !== "client2" &&
+                    testimonial.image !== "client3" &&
+                    testimonial.image !== "client4" ? (
                       <img
                         src={testimonial.image}
                         alt={testimonial.name}
@@ -106,19 +110,19 @@ function Testimonials() {
                       />
                     ) : (
                       <svg
-                        className="w-10 h-10 text-[#B26F3D]"
+                        className="w-10 h-10 text-[var(--color-primary-medium)]"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                       </svg>
                     )}
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#B26F3D] text-lg">
+                    <h3 className="font-bold text-[var(--color-primary-medium)] text-lg">
                       {testimonial.name}
                     </h3>
-                    <p className="text-[#B26F3D] opacity-80 italic">
+                    <p className="text-[var(--color-primary-medium)] opacity-80 italic">
                       {testimonial.role}
                     </p>
                   </div>
@@ -126,7 +130,7 @@ function Testimonials() {
                 {/* Access Project Button */}
                 <button
                   onClick={() => handleProjectAccess(testimonial.projectId)}
-                  className="bg-[#B26F3D] hover:bg-[#894900] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform cursor-pointer"
+                  className="bg-[var(--color-primary-medium)] hover:bg-[var(--color-primary-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform cursor-pointer"
                 >
                   Acessar projeto
                 </button>

@@ -41,11 +41,11 @@ export default function Skills() {
   ];
 
   return (
-    <section className="min-h-screen py-20 px-10">
+    <section className="min-h-screen py-24 px-16">
       <div className="flex flex-col items-center">
         {/* Header */}
-        <div className="flex flex-col gap-4 text-center mb-16">
-          <h1 className="text-6xl font-bold text-[#894900] opacity-60 tracking-wider">
+        <div className="flex flex-col text-center gap-4 mb-24">
+          <h1 className="text-6xl font-bold text-[var(--color-primary-dark)] opacity-60 tracking-wider">
             HABILIDADES
           </h1>
           <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
@@ -56,14 +56,14 @@ export default function Skills() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl gap-16">
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="bg-white border border-[#894900]/20 shadow-md p-8 flex flex-col items-start gap-4 hover:shadow-lg transition rounded-2xl"
+              className="bg-white border border-[var(--color-border-medium)] shadow-md flex flex-col items-start hover:shadow-lg transition rounded-2xl p-8 gap-4"
             >
               {/* Icon */}
-              <div className="p-3 rounded-full border border-[#894900]/30 text-[#894900]">
+              <div className="p-3 rounded-full border border-[var(--color-border-dark)] text-[var(--color-primary-dark)]">
                 {skill.icon}
               </div>
               {/* Content */}

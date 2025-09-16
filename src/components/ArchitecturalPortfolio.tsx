@@ -29,19 +29,19 @@ function ArchitecturalPortfolio() {
   };
 
   return (
-    <section className="min-h-screen pt-10">
+    <section className="min-h-screen pt-24">
       {/* Title Section */}
-      <div className="flex flex-col justify-center items-center gap-2 pb-12">
-        <h1 className="text-6xl font-bold text-[#894900] opacity-60 tracking-wider">
+      <div className="flex flex-col justify-center items-center gap-4 pb-12">
+        <h1 className="text-6xl font-bold text-[var(--color-primary-dark)] opacity-60 tracking-wider">
           ARQUITETURA
         </h1>
-        <span className="text-lg text-[#B26F3D] opacity-80 font-medium tracking-wide">
+        <span className="text-lg text-[var(--color-primary-medium)] opacity-80 font-medium tracking-wide">
           Projetos arquitetônicos completos
         </span>
-        <div className="w-full max-w-120 h-0.5 bg-[#894900] opacity-60"></div>
+        <div className="w-full max-w-120 h-0.5 bg-[var(--color-primary-dark)] opacity-60"></div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8 gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-8 pb-8 gap-4">
         {architecturalProjects.map((project) => (
           <div
             key={project.id}
@@ -56,9 +56,9 @@ function ArchitecturalPortfolio() {
                 loading="lazy"
               />
               {/* Overlay com gradiente diferente */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#894900]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 flex items-end justify-center transition-all duration-300 rounded-2xl">
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-overlay-medium)] via-transparent to-transparent opacity-0 group-hover:opacity-100 flex items-end justify-center transition-all duration-300 rounded-2xl">
                 <div className="text-center p-6">
-                  <span className="text-white text-xl font-bold text-center drop-shadow-lg block mb-2">
+                  <span className="text-white text-xl font-bold text-center drop-shadow-lg block mb-4">
                     {project.alt}
                   </span>
                   <span className="text-white text-sm opacity-90 font-medium">
@@ -68,7 +68,7 @@ function ArchitecturalPortfolio() {
               </div>
 
               {/* Badge de categoria */}
-              <div className="absolute top-4 left-4 bg-[#B26F3D] text-white px-3 py-1 rounded-full text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute top-4 left-4 bg-[var(--color-primary-medium)] text-white px-3 py-1 rounded-full text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 ARQUITETURA
               </div>
             </div>

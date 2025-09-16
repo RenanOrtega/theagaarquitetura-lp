@@ -113,12 +113,12 @@ function ProjectDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[#894900] mb-4">
+          <h1 className="text-2xl font-bold text-[var(--color-primary-dark)] mb-8">
             Projeto não encontrado
           </h1>
           <Link
             to="/"
-            className="inline-flex items-center gap-2 bg-[#B26F3D] hover:bg-[#894900] text-white px-6 py-3 rounded-lg transition-colors"
+            className="inline-flex items-center bg-[var(--color-primary-medium)] hover:bg-[var(--color-primary-dark)] text-white rounded-lg transition-colors gap-4 px-12 py-6"
           >
             <ArrowLeft size={20} />
             Voltar ao Portfolio
@@ -132,7 +132,7 @@ function ProjectDetail() {
     <div
       className="min-h-screen relative overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, #F5E6D3 0%, #E8D5C4 100%)",
+        background: "var(--gradient-light)",
         backgroundImage: `url(${bgProjectDetail})`,
         backgroundPosition: "left bottom",
         backgroundRepeat: "no-repeat",
@@ -140,11 +140,11 @@ function ProjectDetail() {
       }}
     >
       {/* Header com navegação */}
-      <header className="absolute top-0 left-0 right-0 z-20 p-6">
+      <header className="absolute top-0 left-0 right-0 z-20 p-12">
         <div className="flex justify-between items-center">
           <Link
             to="/"
-            className="inline-flex items-center gap-3 text-[#894900] hover:text-[#B26F3D] transition-all duration-300 bg-white/90 backdrop-blur-sm -full px-4 py-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="inline-flex items-center gap-6 px-8 py-6 text-[var(--color-primary-dark)] hover:text-[var(--color-primary-medium)] transition-all duration-300 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
             <ArrowLeft size={20} />
             <span className="hidden sm:inline font-medium">
@@ -154,9 +154,9 @@ function ProjectDetail() {
         </div>
       </header>
 
-      <div className="min-h-screen flex justify-center pt-20 pb-8">
-        <div className="max-w-7xl px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="min-h-screen flex justify-center pt-32 pb-16">
+        <div className="max-w-7xl lg:px-8 px-12">
+          <div className="grid lg:grid-cols-2 items-center gap-20">
             <div>
               {/* Imagem principal */}
               <div className="relative group overflow-hidden rounded-2xl shadow-2xl">
@@ -169,14 +169,14 @@ function ProjectDetail() {
               </div>
 
               {/* Galeria secundária */}
-              <div className="grid grid-cols-3 gap-4 pt-4">
+              <div className="grid grid-cols-3 gap-8 pt-8">
                 {project.images.map((image, index) => (
                   <div
                     key={index}
                     className={`relative group overflow-hidden rounded-xl shadow-lg cursor-pointer transition-all duration-300 ${
                       selectedImage === image
-                        ? 'ring-4 ring-[#B26F3D] ring-opacity-60 transform scale-105'
-                        : 'hover:ring-2 hover:ring-[#B26F3D] hover:ring-opacity-40'
+                        ? "ring-4 ring-[var(--color-primary-medium)] ring-opacity-60 transform scale-105"
+                        : "hover:ring-2 hover:ring-[var(--color-primary-medium)] hover:ring-opacity-40"
                     }`}
                     onClick={() => setSelectedImage(image)}
                   >
@@ -192,44 +192,54 @@ function ProjectDetail() {
             </div>
 
             {/* Lado direito - Conteúdo */}
-            <div className="space-y-8">
+            <div className="flex flex-col gap-16">
               {/* Header do projeto */}
-              <div className="space-y-4">
-                <div className="inline-block px-3 py-1 bg-[#B26F3D]/10 -full">
-                  <span className="text-sm font-medium text-[#B26F3D]">
+              <div className="flex flex-col gap-8">
+                <div className="inline-block bg-[var(--color-primary-medium)]/10 rounded-full px-6 py-2">
+                  <span className="text-sm font-medium text-[var(--color-primary-medium)]">
                     Projeto Residencial
                   </span>
                 </div>
 
-                <h1 className="text-4xl lg:text-5xl font-bold text-[#894900] leading-tight">
+                <h1 className="text-4xl lg:text-5xl font-bold text-[var(--color-primary-dark)] leading-tight">
                   {project.title}
                 </h1>
 
-                <p className="text-xl text-[#B26F3D] font-light italic">
+                <p className="text-xl text-[var(--color-primary-medium)] font-light italic">
                   {project.description}
                 </p>
               </div>
 
               {/* Informações do projeto */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="flex items-center gap-3 p-4 bg-white/50 backdrop-blur-sm -xl">
-                  <div className="p-2 bg-[#B26F3D]/10 -lg">
-                    <Square size={18} className="text-[#B26F3D]" />
+              <div className="grid grid-cols-2 gap-12">
+                <div className="flex items-center bg-white/50 backdrop-blur-sm rounded-xl gap-6 p-8">
+                  <div className="bg-[var(--color-primary-medium)]/10 rounded-lg p-4">
+                    <Square
+                      size={18}
+                      className="text-[var(--color-primary-medium)]"
+                    />
                   </div>
                   <div>
-                    <p className="text-sm text-[#894900]/70">Área</p>
-                    <p className="font-semibold text-[#894900]">
+                    <p className="text-sm text-[var(--color-primary-dark)]/70">
+                      Área
+                    </p>
+                    <p className="font-semibold text-[var(--color-primary-dark)]">
                       {project.area}
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-4 bg-white/50 backdrop-blur-sm -xl w-full">
-                  <div className="p-2 bg-[#B26F3D]/10 -lg">
-                    <MapPin size={18} className="text-[#B26F3D]" />
+                <div className="flex items-center bg-white/50 backdrop-blur-sm rounded-xl w-full gap-6 p-8">
+                  <div className="bg-[var(--color-primary-medium)]/10 rounded-lg p-4">
+                    <MapPin
+                      size={18}
+                      className="text-[var(--color-primary-medium)]"
+                    />
                   </div>
                   <div>
-                    <p className="text-sm text-[#894900]/70">Localização</p>
-                    <p className="font-semibold text-[#894900]">
+                    <p className="text-sm text-[var(--color-primary-dark)]/70">
+                      Localização
+                    </p>
+                    <p className="font-semibold text-[var(--color-primary-dark)]">
                       {project.location}
                     </p>
                   </div>
@@ -237,16 +247,16 @@ function ProjectDetail() {
               </div>
 
               {/* Descrição detalhada */}
-              <div className="pt-2">
+              <div className="pt-4">
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-[#894900] leading-relaxed text-lg">
+                  <p className="text-[var(--color-primary-dark)] leading-relaxed text-lg">
                     {project.details}
                   </p>
 
-                  <p className="text-[#894900] leading-relaxed text-lg">
+                  <p className="text-[var(--color-primary-dark)] leading-relaxed text-lg">
                     Ma className=""is do que uma casa, este projeto representa o
                     lar sonhado por{" "}
-                    <span className="font-semibold text-[#B26F3D]">
+                    <span className="font-semibold text-[var(--color-primary-medium)]">
                       {project.client}
                     </span>
                     , um espaço que traduz sua história, seus valores e o desejo
@@ -255,7 +265,7 @@ function ProjectDetail() {
                 </div>
 
                 {/* Call to action */}
-                <div className="pt-6">
+                <div className="pt-12">
                   <button
                     onClick={() => {
                       const message = encodeURIComponent(
@@ -265,12 +275,12 @@ function ProjectDetail() {
                       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
                       window.open(whatsappUrl, "_blank");
                     }}
-                    className="group relative inline-flex items-center gap-3 bg-[#B26F3D] hover:bg-[#894900] text-white px-8 py-4 -xl text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer"
+                    className="group relative inline-flex items-center bg-[var(--color-primary-medium)] hover:bg-[var(--color-primary-dark)] text-white -xl text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer gap-6 px-16 py-8"
                   >
                     <span>Criar projeto similar</span>
-                    <div className="w-2 h-2 bg-white -full animate-pulse"></div>
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
 
-                    <div className="absolute inset-0 bg-white/20 -xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </div>
               </div>
@@ -283,12 +293,12 @@ function ProjectDetail() {
       <img
         src={logoTh}
         alt="Theaga Logo"
-        className="absolute bottom-6 left-6 h-16 z-10"
+        className="absolute h-16 z-10 bottom-12 left-12"
       />
 
       {/* Elementos decorativos */}
-      <div className="absolute top-1/4 right-8 w-32 h-32 bg-[#B26F3D]/5 -full blur-3xl"></div>
-      <div className="absolute bottom-1/4 left-8 w-40 h-40 bg-[#894900]/5 -full blur-3xl"></div>
+      <div className="absolute top-1/4 w-32 h-32 bg-[var(--color-primary-medium)]/5 rounded-full blur-3xl right-16"></div>
+      <div className="absolute bottom-1/4 w-40 h-40 bg-[var(--color-primary-dark)]/5 rounded-full blur-3xl left-16"></div>
     </div>
   );
 }

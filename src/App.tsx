@@ -21,17 +21,17 @@ function HomePage() {
       <div className="px-20">
         <Portfolio />
         <ArchitecturalPortfolio />
-        <div className="flex justify-center pb-25">
+        <div className="flex justify-center pb-20">
           <button
             onClick={handleWhatsAppContact}
-            className="bg-[#B26F3D] hover:bg-[#2D4530] px-10 py-5 cursor-pointer transition-colors duration-300 rounded-2xl"
+            className="bg-[var(--color-primary-medium)] hover:bg-[var(--color-accent-dark)] px-10 py-5 cursor-pointer transition-colors duration-300 rounded-2xl"
           >
             <span className="font-bold text-white">Entre em contato</span>
           </button>
         </div>
         <Personal />
       </div>
-      <div className="pt-10">
+      <div className="pt-16">
         <Testimonials />
       </div>
       <Footer />
