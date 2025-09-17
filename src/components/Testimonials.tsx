@@ -49,8 +49,8 @@ function Testimonials() {
     <section className="flex flex-col justify-center items-center bg-[var(--color-primary-bg)] pt-24">
       {/* Title Section */}
       <div className="flex flex-col justify-center items-center gap-6">
-        <div className="w-4xl h-0.5 bg-[var(--color-primary-dark)] opacity-60"></div>
-        <div className="w-2xl h-0.5 bg-[var(--color-primary-dark)] opacity-60"></div>
+        <div className="w-100 md:w-4xl h-px bg-[var(--color-primary-dark)] opacity-60"></div>
+        <div className="w-50 md:w-2xl h-px bg-[var(--color-primary-dark)] opacity-60"></div>
         <h1 className="text-6xl font-bold text-[var(--color-primary-dark)] opacity-60 tracking-wider pt-20">
           DEPOIMENTOS
         </h1>
@@ -65,7 +65,7 @@ function Testimonials() {
         {testimonials.map((testimonial) => (
           <div
             key={testimonial.id}
-            className="group bg-[var(--color-primary-light)] p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-full rounded-2xl"
+            className="group bg-[var(--color-primary-bg)] p-8 shadow-[0_0_15px_rgba(0,0,0,0.25)] hover:shadow-[0_0_25px_rgba(0,0,0,0.35)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-full rounded-2xl"
           >
             {/* Estrelas de avaliação */}
             <div className="flex items-center pb-6">
@@ -97,7 +97,7 @@ function Testimonials() {
             <div className="border-t border-[var(--color-primary-medium)] pt-4">
               <div className="flex justify-between">
                 <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 rounded-full overflow-hidden shadow-md bg-[var(--color-primary-light)] flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full overflow-hidden shadow-lg flex items-center justify-center">
                     {testimonial.image &&
                     testimonial.image !== "client1" &&
                     testimonial.image !== "client2" &&

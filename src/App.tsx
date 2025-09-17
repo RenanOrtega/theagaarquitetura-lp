@@ -6,6 +6,7 @@ import Portfolio from "./components/Portfolio";
 import ArchitecturalPortfolio from "./components/ArchitecturalPortfolio";
 import Testimonials from "./components/Testimonials";
 import ProjectDetail from "./components/ProjectDetail";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function HomePage() {
   const handleWhatsAppContact = () => {
@@ -21,7 +22,7 @@ function HomePage() {
       <div className="px-20">
         <Portfolio />
         <ArchitecturalPortfolio />
-        <div className="flex justify-center pb-20">
+        <div className="flex justify-center md:py-35 py-25">
           <button
             onClick={handleWhatsAppContact}
             className="bg-[var(--color-primary-medium)] hover:bg-[var(--color-accent-dark)] px-10 py-5 cursor-pointer transition-colors duration-300 rounded-2xl"
@@ -46,6 +47,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/projeto/:projectId" element={<ProjectDetail />} />
       </Routes>
+      <WhatsAppButton />
     </Router>
   );
 }

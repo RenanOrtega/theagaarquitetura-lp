@@ -3,11 +3,10 @@
 /* Color Variables */
 :root {
   /* Primary Colors */
-  --color-primary-bg: #FFE8D8;
-  --color-primary-dark: #894900;
-  --color-primary-medium: #B26F3D;
-  --color-primary-light: #FADBBB;
-  --color-primary-lightest: #F5E6D3;
+  --color-primary-bg: #F7EDE4;
+  --color-primary-dark: #63320A;
+  --color-primary-medium: #A3612F;
+  --color-primary-light: #63320A;
 
   /* Accent Colors */
   --color-accent-dark: #2D4530;

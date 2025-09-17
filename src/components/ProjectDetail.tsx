@@ -9,6 +9,8 @@ import portfolio5 from "../assets/images/portfolio-5.jpg";
 import portfolio6 from "../assets/images/portfolio-6.jpg";
 import bgProjectDetail from "../assets/images/bg-project-detail.png";
 import logoTh from "../assets/images/logo-th.png";
+import logoThFrame from "../assets/images/logo-th-frame.png";
+import { useMediaQuery } from "react-responsive";
 
 interface ProjectData {
   id: number;
@@ -102,6 +104,7 @@ function ProjectDetail() {
   const { projectId } = useParams<{ projectId: string }>();
   const project = projectId ? projectsData[projectId] : null;
   const [selectedImage, setSelectedImage] = useState<string>("");
+  const isLarge = useMediaQuery({ minWidth: 1024 }); // lg = 1024px
 
   useEffect(() => {
     if (project) {
@@ -127,13 +130,12 @@ function ProjectDetail() {
       </div>
     );
   }
-
   return (
     <div
       className="min-h-screen relative overflow-hidden"
       style={{
         background: "var(--gradient-light)",
-        backgroundImage: `url(${bgProjectDetail})`,
+        backgroundImage: isLarge ? `url(${bgProjectDetail})` : "none",
         backgroundPosition: "left bottom",
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
@@ -156,46 +158,29 @@ function ProjectDetail() {
 
       <div className="min-h-screen flex justify-center pt-32 pb-16">
         <div className="max-w-7xl lg:px-8 px-12">
-          <div className="grid lg:grid-cols-2 items-center gap-20">
-            <div>
-              {/* Imagem principal */}
-              <div className="relative group overflow-hidden rounded-2xl shadow-2xl">
-                <img
-                  src={selectedImage}
-                  alt={project.title}
-                  className="w-full h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-
-              {/* Galeria secundária */}
-              <div className="grid grid-cols-3 gap-8 pt-8">
-                {project.images.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`relative group overflow-hidden rounded-xl shadow-lg cursor-pointer transition-all duration-300 ${
-                      selectedImage === image
-                        ? "ring-4 ring-[var(--color-primary-medium)] ring-opacity-60 transform scale-105"
-                        : "hover:ring-2 hover:ring-[var(--color-primary-medium)] hover:ring-opacity-40"
-                    }`}
-                    onClick={() => setSelectedImage(image)}
-                  >
-                    <img
-                      src={image}
-                      alt={`${project.title} - Vista ${index + 1}`}
-                      className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
-                  </div>
-                ))}
-              </div>
+          {/* Header do projeto - Mobile first, sempre no topo */}
+          <div className="flex flex-col gap-4 mb-12 lg:hidden">
+            <div className="inline-block bg-[var(--color-primary-medium)]/10 rounded-full px-6 py-2 w-fit">
+              <span className="text-sm font-medium text-[var(--color-primary-medium)]">
+                Projeto Residencial
+              </span>
             </div>
 
-            {/* Lado direito - Conteúdo */}
-            <div className="flex flex-col gap-16">
-              {/* Header do projeto */}
-              <div className="flex flex-col gap-8">
-                <div className="inline-block bg-[var(--color-primary-medium)]/10 rounded-full px-6 py-2">
+            <h1 className="text-4xl font-bold text-[var(--color-primary-dark)]">
+              {project.title}
+            </h1>
+
+            <p className="text-xl text-[var(--color-primary-medium)] font-light italic">
+              {project.description}
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 items-center lg:gap-10 gap-2">
+            {/* Lado direito - Conteúdo (Desktop) */}
+            <div className="flex flex-col gap-16 lg:order-2">
+              {/* Header do projeto - Desktop only */}
+              <div className="hidden lg:flex flex-col gap-2">
+                <div className="inline-block bg-[var(--color-primary-medium)]/10 rounded-full px-6 py-2 w-fit">
                   <span className="text-sm font-medium text-[var(--color-primary-medium)]">
                     Projeto Residencial
                   </span>
@@ -210,8 +195,8 @@ function ProjectDetail() {
                 </p>
               </div>
 
-              {/* Informações do projeto */}
-              <div className="grid grid-cols-2 gap-12">
+              {/* Informações do projeto - Desktop only */}
+              <div className="hidden lg:grid grid-cols-2 gap-12">
                 <div className="flex items-center bg-white/50 backdrop-blur-sm rounded-xl gap-6 p-8">
                   <div className="bg-[var(--color-primary-medium)]/10 rounded-lg p-4">
                     <Square
@@ -246,16 +231,16 @@ function ProjectDetail() {
                 </div>
               </div>
 
-              {/* Descrição detalhada */}
-              <div className="pt-4">
+              {/* Descrição detalhada - Desktop only */}
+              <div className="hidden lg:block">
                 <div className="prose prose-lg max-w-none">
                   <p className="text-[var(--color-primary-dark)] leading-relaxed text-lg">
                     {project.details}
                   </p>
 
                   <p className="text-[var(--color-primary-dark)] leading-relaxed text-lg">
-                    Ma className=""is do que uma casa, este projeto representa o
-                    lar sonhado por{" "}
+                    Mais do que uma casa, este projeto representa o lar sonhado
+                    por{" "}
                     <span className="font-semibold text-[var(--color-primary-medium)]">
                       {project.client}
                     </span>
@@ -263,9 +248,9 @@ function ProjectDetail() {
                     de viver cada momento com leveza e autenticidade.
                   </p>
                 </div>
-
+                rty
                 {/* Call to action */}
-                <div className="pt-12">
+                <div className="pt-5">
                   <button
                     onClick={() => {
                       const message = encodeURIComponent(
@@ -275,7 +260,7 @@ function ProjectDetail() {
                       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
                       window.open(whatsappUrl, "_blank");
                     }}
-                    className="group relative inline-flex items-center bg-[var(--color-primary-medium)] hover:bg-[var(--color-primary-dark)] text-white -xl text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer gap-6 px-16 py-8"
+                    className="group relative inline-flex items-center bg-[var(--color-primary-medium)] hover:bg-[var(--color-primary-dark)] text-white rounded-xl text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer gap-6 px-16 py-8"
                   >
                     <span>Criar projeto similar</span>
                     <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
@@ -285,17 +270,139 @@ function ProjectDetail() {
                 </div>
               </div>
             </div>
+
+            {/* Imagens */}
+            <div className="lg:order-1">
+              {/* Imagem principal */}
+              <div className="relative group overflow-hidden rounded-2xl shadow-2xl">
+                <img
+                  src={selectedImage}
+                  alt={project.title}
+                  className="w-full h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+
+              {/* Galeria secundária */}
+              <div className="grid grid-cols-3 gap-8 pt-8">
+                {project.images.map((image, index) => (
+                  <div
+                    key={index}
+                    className={`relative group overflow-hidden rounded-xl shadow-lg cursor-pointer transition-all duration-300 ${
+                      selectedImage === image
+                        ? "ring-4 ring-[var(--color-primary-medium)] ring-opacity-60 transform scale-105"
+                        : "hover:ring-2 hover:ring-[var(--color-primary-medium)] hover:ring-opacity-40"
+                    }`}
+                    onClick={() => setSelectedImage(image)}
+                  >
+                    <img
+                      src={image}
+                      alt={`${project.title} - Vista ${index + 1}`}
+                      className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Conteúdo abaixo das imagens - Mobile only */}
+          <div className="lg:hidden">
+            {/* Informações do projeto */}
+            <div className="grid grid-cols-2 gap-8 py-6">
+              <div className="flex items-center bg-white/50 backdrop-blur-sm rounded-xl gap-4 p-6">
+                <div className="bg-[var(--color-primary-medium)]/10 rounded-lg p-3">
+                  <Square
+                    size={16}
+                    className="text-[var(--color-primary-medium)]"
+                  />
+                </div>
+                <div>
+                  <p className="text-xs text-[var(--color-primary-dark)]/70">
+                    Área
+                  </p>
+                  <p className="font-semibold text-[var(--color-primary-dark)] text-sm">
+                    {project.area}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center bg-white/50 backdrop-blur-sm rounded-xl gap-4 p-6">
+                <div className="bg-[var(--color-primary-medium)]/10 rounded-lg p-3">
+                  <MapPin
+                    size={16}
+                    className="text-[var(--color-primary-medium)]"
+                  />
+                </div>
+                <div>
+                  <p className="text-xs text-[var(--color-primary-dark)]/70">
+                    Localização
+                  </p>
+                  <p className="font-semibold text-[var(--color-primary-dark)] text-sm">
+                    {project.location}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Descrição detalhada */}
+            <div className="prose prose-lg max-w-none">
+              <p className="text-[var(--color-primary-dark)] leading-relaxed">
+                {project.details}
+              </p>
+
+              <p className="text-[var(--color-primary-dark)] leading-relaxed">
+                Mais do que uma casa, este projeto representa o lar sonhado por{" "}
+                <span className="font-semibold text-[var(--color-primary-medium)]">
+                  {project.client}
+                </span>
+                , um espaço que traduz sua história, seus valores e o desejo de
+                viver cada momento com leveza e autenticidade.
+              </p>
+            </div>
+
+            {/* Call to action */}
+            <div className="pt-8">
+              <button
+                onClick={() => {
+                  const message = encodeURIComponent(
+                    `Olá! Vi o projeto ${project.title} no seu portfólio e adorei! Gostaria de conversar sobre um projeto similar.`
+                  );
+                  const phoneNumber = "5511994696897";
+                  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+                  window.open(whatsappUrl, "_blank");
+                }}
+                className="group relative inline-flex items-center bg-[var(--color-primary-medium)] hover:bg-[var(--color-primary-dark)] text-white rounded-xl text-base font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer gap-4 px-12 py-6 w-full justify-center"
+              >
+                <span>Criar projeto similar</span>
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+
+                <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Logo no canto inferior esquerdo */}
-      <img
+      {/* Logo - Mobile/Medium: superior direito, Large: inferior esquerdo */}
+      {isLarge ? (
+        <img
+          src={logoTh}
+          alt="Theaga Logo"
+          className="absolute h-16 z-10 top-12 right-12 lg:top-auto lg:right-auto lg:bottom-12 lg:left-12"
+        />
+      ) : (
+        <img
+          src={logoThFrame}
+          alt="Theaga Logo Moldura"
+          className="absolute h-16 z-9 top-12 right-12 lg:top-auto lg:right-auto lg:bottom-12 lg:left-12"
+        />
+      )}
+      {/* <img
         src={logoTh}
         alt="Theaga Logo"
-        className="absolute h-16 z-10 bottom-12 left-12"
-      />
-
+        className="absolute h-16 z-10 top-12 right-12 lg:top-auto lg:right-auto lg:bottom-12 lg:left-12"
+      /> */}
       {/* Elementos decorativos */}
       <div className="absolute top-1/4 w-32 h-32 bg-[var(--color-primary-medium)]/5 rounded-full blur-3xl right-16"></div>
       <div className="absolute bottom-1/4 w-40 h-40 bg-[var(--color-primary-dark)]/5 rounded-full blur-3xl left-16"></div>
