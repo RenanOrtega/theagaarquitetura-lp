@@ -177,7 +177,7 @@ function ProjectDetail() {
 
           <div className="grid lg:grid-cols-2 items-center lg:gap-10 gap-2">
             {/* Lado direito - Conteúdo (Desktop) */}
-            <div className="flex flex-col gap-16 lg:order-2">
+            <div className="flex flex-col gap-5 lg:order-2">
               {/* Header do projeto - Desktop only */}
               <div className="hidden lg:flex flex-col gap-2">
                 <div className="inline-block bg-[var(--color-primary-medium)]/10 rounded-full px-6 py-2 w-fit">
@@ -248,9 +248,9 @@ function ProjectDetail() {
                     de viver cada momento com leveza e autenticidade.
                   </p>
                 </div>
-                rty
+
                 {/* Call to action */}
-                <div className="pt-5">
+                <div className="pt-5 text-right">
                   <button
                     onClick={() => {
                       const message = encodeURIComponent(
@@ -260,9 +260,9 @@ function ProjectDetail() {
                       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
                       window.open(whatsappUrl, "_blank");
                     }}
-                    className="group relative inline-flex items-center bg-[var(--color-primary-medium)] hover:bg-[var(--color-primary-dark)] text-white rounded-xl text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer gap-6 px-16 py-8"
+                    className="group relative inline-flex items-center bg-[var(--color-primary-medium)] hover:bg-[var(--color-primary-dark)] text-white rounded-xl text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer gap-6 px-8 py-4"
                   >
-                    <span>Criar projeto similar</span>
+                    <span>Criar projeto</span>
                     <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
 
                     <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

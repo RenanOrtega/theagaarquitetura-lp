@@ -51,10 +51,10 @@ function Testimonials() {
       <div className="flex flex-col justify-center items-center gap-6">
         <div className="w-100 md:w-4xl h-px bg-[var(--color-primary-dark)] opacity-60"></div>
         <div className="w-50 md:w-2xl h-px bg-[var(--color-primary-dark)] opacity-60"></div>
-        <h1 className="text-6xl font-bold text-[var(--color-primary-dark)] opacity-60 tracking-wider pt-20">
+        <h1 className="text-4xl md:text-6xl font-bold text-[var(--color-primary-dark)] opacity-60 tracking-wider text-center">
           DEPOIMENTOS
         </h1>
-        <span className="text-lg text-[var(--color-primary-dark)] opacity-60 font-medium tracking-wide">
+        <span className="text-base md:text-lg text-[var(--color-primary-medium)] opacity-80 font-medium tracking-wide text-center">
           O que nossos clientes dizem sobre a experiência
         </span>
         <div className="w-full max-w-[30rem] h-0.5 bg-primary opacity-60"></div>

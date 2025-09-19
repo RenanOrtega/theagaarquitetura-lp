@@ -1,6 +1,6 @@
 import nath from "../assets/images/nath.png";
 // import nathOrganic from "../assets/images/nath-organic.png";
-import nathSquare from "../assets/images/nath-square.png";
+import nathOrganic from "../assets/images/nath-organic.png";
 import InstagramIcon from "../assets/svg/instagram";
 
 export default function Personal() {
@@ -9,7 +9,7 @@ export default function Personal() {
       {/* Lado da imagem */}
       <div className="flex-1 max-w-120">
         <img
-          src={nathSquare}
+          src={nathOrganic}
           alt="Nathalia Leme"
           className="w-full h-auto object-cover rounded-2xl"
         />
