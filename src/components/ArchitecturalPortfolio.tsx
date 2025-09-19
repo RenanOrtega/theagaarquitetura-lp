@@ -6,37 +6,89 @@ import portfolio4 from "../assets/images/portfolio-4.jpg";
 import portfolio5 from "../assets/images/portfolio-5.jpg";
 import portfolio6 from "../assets/images/portfolio-6.jpg";
 import { useCallback, useEffect, useState } from "react";
+import { SectionTitle, Tab, TabGroup } from "./ui";
+
+type ProjectCategory = "Casas" | "Edificios";
 
 interface ArchitecturalProject {
   id: number;
   image: string;
   alt: string;
+  category: ProjectCategory;
 }
 
 function ArchitecturalPortfolio() {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState<ProjectCategory>("Casas");
 
   const architecturalProjects: ArchitecturalProject[] = [
-    { id: 101, image: portfolio2, alt: "Casa Moderna Minimalista" },
-    { id: 102, image: portfolio4, alt: "Residência Contemporânea" },
-    { id: 103, image: portfolio6, alt: "Edifício Comercial Sustentável" },
-    { id: 104, image: portfolio1, alt: "Villa de Campo" },
-    { id: 105, image: portfolio3, alt: "Complexo Residencial" },
-    { id: 106, image: portfolio5, alt: "Centro Cultural" },
+    {
+      id: 101,
+      image: portfolio2,
+      alt: "Casa Moderna Minimalista",
+      category: "Casas",
+    },
+    {
+      id: 102,
+      image: portfolio4,
+      alt: "Residência Contemporânea",
+      category: "Edificios",
+    },
+    {
+      id: 103,
+      image: portfolio6,
+      alt: "Edifício Comercial Sustentável",
+      category: "Casas",
+    },
+    {
+      id: 104,
+      image: portfolio1,
+      alt: "Villa de Campo",
+      category: "Edificios",
+    },
+    {
+      id: 105,
+      image: portfolio3,
+      alt: "Complexo Residencial",
+      category: "Casas",
+    },
+    {
+      id: 106,
+      image: portfolio5,
+      alt: "Centro Cultural",
+      category: "Edificios",
+    },
+    {
+      id: 107,
+      image: portfolio5,
+      alt: "Centro Cultural",
+      category: "Edificios",
+    },
+    {
+      id: 110,
+      image: portfolio3,
+      alt: "Complexo Residencial",
+      category: "Casas",
+    },
   ];
 
-  const handleProjectClick = (projectId: number) => {
-    navigate(`/projeto/${projectId}`);
-  };
+  const categories: ProjectCategory[] = ["Casas", "Edificios"];
 
+  const filteredItems = architecturalProjects.filter(
+    (item) => item.category === activeTab
+  );
+
+  // Função para determinar quantos projetos mostrar baseado no breakpoint
   const getItemsToShow = useCallback(() => {
     if (typeof window !== "undefined") {
-      return window.innerWidth < 768 ? 3 : architecturalProjects.length; // 3 no mobile, todos nos outros
+      return window.innerWidth < 768 ? 3 : filteredItems.length; // 3 no mobile, todos nos outros
     }
-    return architecturalProjects.length;
-  }, [architecturalProjects.length]);
+    return filteredItems.length;
+  }, [filteredItems.length]);
 
   const [itemsToShow, setItemsToShow] = useState(getItemsToShow);
+
+  // Atualizar quantidade de itens quando redimensionar a tela
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,22 +97,36 @@ function ArchitecturalPortfolio() {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [architecturalProjects.length, getItemsToShow]);
+  }, [filteredItems.length, getItemsToShow]);
 
-  const displayedItems = architecturalProjects.slice(0, itemsToShow);
+  const displayedItems = filteredItems.slice(0, itemsToShow);
+
+  const handleProjectClick = (projectId: number) => {
+    navigate(`/projeto/${projectId}`);
+  };
 
   return (
     <section className="pt-24">
       {/* Title Section */}
-      <div className="flex flex-col justify-center items-center gap-4 px-4">
-        <h1 className="text-4xl md:text-6xl font-bold text-[var(--color-primary-dark)] opacity-60 tracking-wider text-center">
-          ARQUITETURA
-        </h1>
-        <span className="text-base md:text-lg text-[var(--color-primary-medium)] opacity-80 font-medium tracking-wide text-center">
-          Projetos arquitetônicos completos
-        </span>
-        <div className="w-full max-w-120 h-px bg-[var(--color-primary-dark)] opacity-60"></div>
+      <div className="flex flex-col justify-center items-center px-4">
+        <SectionTitle
+          title="ARQUITETURA"
+          subtitle="Projetos arquitetônicos completos"
+          showDivider={false}
+        />
       </div>
+
+      <TabGroup>
+        {categories.map((category) => (
+          <Tab
+            key={category}
+            label={category}
+            isActive={activeTab === category}
+            onClick={() => setActiveTab(category)}
+          />
+        ))}
+      </TabGroup>
+
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-8 pb-8 gap-2">
         {displayedItems.map((project) => (
           <div
@@ -89,7 +155,7 @@ function ArchitecturalPortfolio() {
 
               {/* Badge de categoria */}
               <div className="absolute top-2 md:top-4 left-2 md:left-4 bg-[var(--color-primary-medium)] text-white px-2 md:px-3 py-1 rounded-full text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                ARQUITETURA
+                {project.category.toUpperCase()}
               </div>
             </div>
           </div>

@@ -6,6 +6,7 @@ import portfolio3 from "../assets/images/portfolio-3.jpg";
 import portfolio4 from "../assets/images/portfolio-4.jpg";
 import portfolio5 from "../assets/images/portfolio-5.jpg";
 import portfolio6 from "../assets/images/portfolio-6.jpg";
+import { SectionTitle, Tab, TabGroup } from "./ui";
 
 type ProjectCategory = "Residencial" | "Comercial" | "Institucional" | "Outros";
 
@@ -98,35 +99,24 @@ function Portfolio() {
 
   return (
     <section className="min-h-screen pt-24">
-      {/* Title Section */}
-      <div className="flex flex-col justify-center items-center gap-4 px-4">
-        <h1 className="text-4xl md:text-6xl font-bold text-[var(--color-primary-dark)] opacity-60 tracking-wider text-center">
-          INTERIORES
-        </h1>
-        <span className="text-base md:text-lg text-[var(--color-primary-medium)] opacity-80 font-medium tracking-wide text-center">
-          Projetos de design de interiores
-        </span>
-        <div className="w-full max-w-120 h-px bg-[var(--color-primary-dark)] opacity-60"></div>
+      <div className="flex flex-col justify-center items-center px-4">
+        <SectionTitle
+          title="INTERIORES"
+          subtitle="Projetos de design de interiores"
+          showDivider={false}
+        />
       </div>
 
-      {/* Tabs Navigation */}
-      <div className="flex justify-center pt-8 pb-4 px-4">
-        <div className="flex flex-wrap justify-center bg-white/50 backdrop-blur-sm rounded-2xl shadow-lg gap-2 md:gap-4 p-3 md:p-4 w-full max-w-2xl">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveTab(category)}
-              className={`px-3 md:px-6 py-2 md:py-3 rounded-xl font-medium transition-all duration-300 text-sm md:text-base flex-shrink-0 ${
-                activeTab === category
-                  ? "bg-[var(--color-primary-medium)] text-white shadow-lg transform scale-105"
-                  : "text-[var(--color-primary-medium)] hover:bg-[var(--color-primary-medium)]/10 hover:text-[var(--color-primary-dark)] cursor-pointer"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      </div>
+      <TabGroup>
+        {categories.map((category) => (
+          <Tab
+            key={category}
+            label={category}
+            isActive={activeTab === category}
+            onClick={() => setActiveTab(category)}
+          />
+        ))}
+      </TabGroup>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-8 pb-8 gap-2 px-4">
         {displayedItems.map((item) => (

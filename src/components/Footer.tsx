@@ -3,6 +3,7 @@ import InstagramIcon from "../assets/svg/instagram";
 import PinterestIcon from "../assets/svg/pinterest";
 import LinkedInIcon from "../assets/svg/linkedin";
 import { Phone, Mail } from "lucide-react";
+import { SocialIcon } from "./ui";
 
 export default function Footer() {
   // Hook para obter data atual automaticamente
@@ -50,30 +51,15 @@ export default function Footer() {
             Redes Sociais
           </h3>
           <div className="flex justify-center gap-8">
-            <a
-              href="https://www.instagram.com/arquitetanath/#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
-            >
+            <SocialIcon href="https://www.instagram.com/arquitetanath/#" ariaLabel="Instagram">
               <InstagramIcon className="text-[var(--color-primary-medium)]" />
-            </a>
-            <a
-              href="https://br.pinterest.com/arquitetanath"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
-            >
+            </SocialIcon>
+            <SocialIcon href="https://br.pinterest.com/arquitetanath" ariaLabel="Pinterest">
               <PinterestIcon className="text-[var(--color-primary-medium)]" />
-            </a>
-            <a
-              href="https://linkedin.com/in/nath-arquiteta"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center hover:bg-opacity-30 transition-all duration-300"
-            >
+            </SocialIcon>
+            <SocialIcon href="https://linkedin.com/in/nath-arquiteta" ariaLabel="LinkedIn">
               <LinkedInIcon className="text-[var(--color-primary-medium)]" />
-            </a>
+            </SocialIcon>
           </div>
         </div>
       </div>

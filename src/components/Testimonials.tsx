@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { SectionTitle, Card, Button } from "./ui";
 // import client1 from "../assets/images/client-1.jpg";
 // import client2 from "../assets/images/client-2.jpg";
 // import client3 from "../assets/images/client-3.jpg";
@@ -47,26 +48,16 @@ function Testimonials() {
 
   return (
     <section className="flex flex-col justify-center items-center bg-[var(--color-primary-bg)] pt-24">
-      {/* Title Section */}
-      <div className="flex flex-col justify-center items-center gap-6">
-        <div className="w-100 md:w-4xl h-px bg-[var(--color-primary-dark)] opacity-60"></div>
-        <div className="w-50 md:w-2xl h-px bg-[var(--color-primary-dark)] opacity-60"></div>
-        <h1 className="text-4xl md:text-6xl font-bold text-[var(--color-primary-dark)] opacity-60 tracking-wider text-center">
-          DEPOIMENTOS
-        </h1>
-        <span className="text-base md:text-lg text-[var(--color-primary-medium)] opacity-80 font-medium tracking-wide text-center">
-          O que nossos clientes dizem sobre a experiência
-        </span>
-        <div className="w-full max-w-[30rem] h-0.5 bg-primary opacity-60"></div>
-      </div>
+      <SectionTitle
+        title="DEPOIMENTOS"
+        subtitle="O que nossos clientes dizem sobre a experiência"
+        className="mb-16"
+      />
 
       {/* Testimonials Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-16 px-20 pb-20">
         {testimonials.map((testimonial) => (
-          <div
-            key={testimonial.id}
-            className="group bg-[var(--color-primary-bg)] p-8 shadow-[0_0_15px_rgba(0,0,0,0.25)] hover:shadow-[0_0_25px_rgba(0,0,0,0.35)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-full rounded-2xl"
-          >
+          <Card key={testimonial.id} variant="testimonial" className="group">
             {/* Estrelas de avaliação */}
             <div className="flex items-center pb-6">
               {[...Array(5)].map((_, i) => (
@@ -128,15 +119,12 @@ function Testimonials() {
                   </div>
                 </div>
                 {/* Access Project Button */}
-                <button
-                  onClick={() => handleProjectAccess(testimonial.projectId)}
-                  className="bg-[var(--color-primary-medium)] hover:bg-[var(--color-primary-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 transform cursor-pointer"
-                >
+                <Button onClick={() => handleProjectAccess(testimonial.projectId)}>
                   Acessar projeto
-                </button>
+                </Button>
               </div>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </section>

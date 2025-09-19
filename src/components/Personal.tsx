@@ -2,6 +2,7 @@ import nath from "../assets/images/nath.png";
 // import nathOrganic from "../assets/images/nath-organic.png";
 import nathOrganic from "../assets/images/nath-organic.png";
 import InstagramIcon from "../assets/svg/instagram";
+import { SocialIcon } from "./ui";
 
 export default function Personal() {
   return (
@@ -36,10 +37,10 @@ export default function Personal() {
           </p>
         </div>
         <div className="flex justify-center md:justify-end pt-5">
-          <a
+          <SocialIcon
             href="https://www.instagram.com/arquitetanath/#"
-            target="_blank"
-            className="w-70 h-15 bg-[var(--color-primary-medium)] border border-[var(--color-border-light)] flex items-center justify-center shadow-sm transition-all duration-300 hover:shadow-md rounded-2xl gap-8 group hover:scale-105 hover:-translate-y-1"
+            variant="button"
+            ariaLabel="Siga no Instagram"
           >
             <div className="relative">
               <InstagramIcon
@@ -55,7 +56,7 @@ export default function Personal() {
             <span className="text-white font-bold transition-all duration-300">
               Siga no Instagram!
             </span>
-          </a>
+          </SocialIcon>
         </div>
       </div>
     </section>
